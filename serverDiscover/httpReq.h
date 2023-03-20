@@ -3,6 +3,8 @@
 
 #include <event2/http.h>
 #include <event2/buffer.h>
+#include <event2/http_struct.h>
+#include <event2/buffer_compat.h>
 
 void HttpRequestCallBack(struct evhttp_request* pRequest, void *arg);
 void HttpReqGetAllNodesCb(struct evhttp_request* pRequest, void *arg);

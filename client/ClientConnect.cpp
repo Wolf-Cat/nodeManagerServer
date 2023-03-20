@@ -165,7 +165,7 @@ void ClientConnect::ReqLogin()
     u8 buffer[1024] = {0};
     serdmessage::ReqNodeLogin reqLogin;
     reqLogin.set_city("guangzhou");
-    reqLogin.set_ip("123.456.789");
+    reqLogin.set_ip("123.456.789.452");
     reqLogin.set_port(105);
     reqLogin.set_name("node_ms_01");
     int nBodyLen = reqLogin.ByteSizeLong();
