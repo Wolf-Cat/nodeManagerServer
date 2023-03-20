@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package serdmessage;
+
+message ReqHeartBeat {
+}
+
+message RespHeartBeat {
+
+}
+
+message ReqNodeLogin {
+    string ip = 1;
+    int32 port = 2;
+    string city = 3;
+    string name = 4;
+}
+
+message RespNodeLogin {
+    int32 ret_code = 1;
+}
+
+message ReqCloseNode {
+    string ip = 1;
+    bool start = 2;
+}

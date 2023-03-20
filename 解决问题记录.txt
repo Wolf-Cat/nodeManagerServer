@@ -1,0 +1,55 @@
+* 读取客户端数据出错: Bad file descriptor
+用perror打印一下错误信息：得到“ : Interrupted system call”
+如果先关闭服务端，在客户端也会打印出该数据
+
+
+接受了send的返回值时就会错误
+
+serdsock增加了 EPPLLOUT就没有这个错误了，但是终端的数据显示不出来了
+
+一设置阻塞的时候也会出这个问题
+                // 将cfd设置为非阻塞IO fcntl
+                int flag = fcntl(cfd, F_GETFL);
+                flag |= O_NONBLOCK;
+                fcntl(cfd, F_SETFL, flag);
+
+* 客户端只能发送一次数据到服务端，第二次就发送不出去
+
+
+
+不添加server_serd的套接字，通过只启动epoll_server。 然后发现一直被调用epoll_wait，并且收到服务端的数据
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.045 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:39:05.046 [18418] LOG_DEBUG server serd resp sock data epollServer.cpp:207
+
+
+直接回车的问题
+ else if(fd == STDIN_FILENO):: Connection refused
+2023-03-05 17:45:18.927 [18479] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:45:18.927 [18479] LOG_DEBUG terminel data input: epollServer.cpp:154
+
+ else if(fd == STDIN_FILENO):: Connection refused
+2023-03-05 17:45:19.623 [18479] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:45:19.623 [18479] LOG_DEBUG terminel data input: epollServer.cpp:154
+
+ else if(fd == STDIN_FILENO):: Connection refused
+2023-03-05 17:45:20.047 [18479] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:45:20.047 [18479] LOG_DEBUG terminel data input: epollServer.cpp:154
+
+ else if(fd == STDIN_FILENO):: Connection refused
+2023-03-05 17:45:22.616 [18479] LOG_DEBUG epoll_wait is call, nRet:1 epollServer.cpp:114
+2023-03-05 17:45:22.616 [18479] LOG_DEBUG terminel data input: epollServer.cpp:154
+
+
+else if(fd == STDIN_FILENO):: Connection refused
+
+

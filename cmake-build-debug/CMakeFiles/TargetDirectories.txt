@@ -1,0 +1,8 @@
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/CMakeFiles/exe_server_discover.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/client/CMakeFiles/clienttest.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/client/CMakeFiles/epollServer.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/client/CMakeFiles/libeventClient.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/client/CMakeFiles/edit_cache.dir
+C:/Users/admin-sun/Desktop/server_discover/cmake-build-debug/client/CMakeFiles/rebuild_cache.dir
