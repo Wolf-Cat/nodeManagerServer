@@ -98,6 +98,7 @@ void ClientConnect::ReadCB(struct bufferevent *bev, void *arg) {
     }
     else if(head.usMsgId == REQ_CLOSE_NODE)
     {
+        log_info("Get server close node req , will close node");
         exit(0);
     }
 }

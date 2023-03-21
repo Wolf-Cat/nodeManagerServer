@@ -30,6 +30,10 @@ void Global::AddNode(std::string strIp, NodeConnect* pNodeConn)
 void Global::DelNode(std::string strIp)
 {
     std::lock_guard<std::mutex> lock_guard(m_mutex);
+    if(m_mapNode.find(strIp) != m_mapNode.end())
+    {
+        m_mapNode[strIp]->SendReqCloseNode();
+    }
 }
 
 void Global::GetAllNode(Json::Value &jsonData)

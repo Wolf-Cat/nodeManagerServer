@@ -18,6 +18,7 @@ public:
     void SetNodeName(std::string strName);
     std::string GetNodeName();
 
+    void SendReqCloseNode();
     static void ReadCallBack(bufferevent *bev, void *arg);
     static void WriteCallBack(bufferevent *bev, void *arg);
     static void ErrorCallBack(bufferevent *bev, short what, void *arg);
@@ -25,6 +26,7 @@ public:
     evutil_socket_t m_sock = 0;
 private:
     struct event_base *m_pBase = nullptr;
+    struct bufferevent *m_pBev = nullptr;
     std::string m_strNodeName;
     std::unordered_map<u16, std::function<void(u8*, int)>> m_hashMapCmd;
 };

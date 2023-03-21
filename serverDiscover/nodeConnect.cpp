@@ -126,8 +126,27 @@ void NodeConnect::HandlerConnect() {
         return;
     }
 
+    m_pBev = bev;
     bufferevent_setcb(bev, ReadCallBack, WriteCallBack, ErrorCallBack, this);
     bufferevent_enable(bev, EV_READ | EV_WRITE);
+}
+
+void NodeConnect::SendReqCloseNode()
+{
+    u8 bufferSend[1024] = {0};
+    StructProtocolHead headSend;
+    headSend.usTag = 100;
+    headSend.ucVersion = 2;
+    headSend.ucType = PB_PROTOCAL_TYPE;
+    headSend.ullMsgSn = 101;
+    headSend.uiPriority = 789;
+    headSend.uiReserver1 = 456;
+    headSend.usMsgId = REQ_CLOSE_NODE;
+
+    DataHeadCodec headCodec;
+    headCodec.Encode(&headSend, bufferSend, sizeof(bufferSend));
+
+    bufferevent_write(m_pBev, bufferSend, sizeof(bufferSend));
 }
 
 void NodeConnect::SetNodeName(std::string strName)
