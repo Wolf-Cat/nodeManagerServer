@@ -1,9 +1,4 @@
-//
-// Created by admin-sun on 2022/12/28.
-//
-
 #include "utils.h"
-#include <fstream>
 
 namespace Utils {
     unsigned int GetCurTimeStamp()
@@ -53,7 +48,6 @@ namespace Utils {
         return ret_len;
     }
 
-    /*
     bool readJson(const char* filename, Json::Value& json)
     {
         Json::Reader reader(Json::Features::strictMode());
@@ -91,5 +85,4 @@ namespace Utils {
         }
         return false;
     }
-     */
 }

@@ -8,10 +8,12 @@ include_directories(../common)
 include_directories(../serverDiscover)
 include_directories(./)
 include_directories(../3rd/log)
+include_directories(../3rd/json)
 
 set(SRC_FILES
         ../serverDiscover/message.pb.cpp
         ../common/utils.cpp
+        ../3rd/json/jsoncpp.cpp
         main.cpp)
 
 set(EPOLL_FILES
@@ -32,6 +34,7 @@ set(LIBEVENT_CLIENT_FILES
         ../serverDiscover/message.pb.cpp
         ../common/dataProtocolHead.cpp
         ../common/utils.cpp
+        ../3rd/json/jsoncpp.cpp
         ClientConnect.cpp
 )
 
