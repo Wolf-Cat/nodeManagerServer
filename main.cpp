@@ -8,7 +8,7 @@
 #include <event2/http.h>
 #include <event2/buffer.h>
 #include <event2/bufferevent.h>
-#include "globaddl.h"
+#include "global.h"
 #include "common/utils.h"
 #include "core/threadPool.h"
 #include "mainLog.h"
@@ -18,6 +18,7 @@
 
 namespace {
     const std::string PROFILE_PATH = "profile.json";
+    int THREADS_COUNT = 5;
 }
 
 //新的客户端TCP连接过来
@@ -33,11 +34,11 @@ int main() {
     //将SIGPIPE信号交给系统屏蔽处理。
     signal(SIGPIPE, SIG_IGN);
 
-    MainLog mainlog;
-    mainlog.init();
+    Global::GetInstance()->Init();
+    
     log_info("Server Discovery start");
 
-    XThreadPool::GetInstance()->Init(5);
+    XThreadPool::GetInstance()->Init(THREADS_COUNT);
 
     //TCP连接服务
     struct sockaddr_in sinAddr;
@@ -48,7 +49,7 @@ int main() {
     event_base *base = event_base_new();
     if(NULL == base)
     {
-        log_error("base init false");
+        log_error("base init failed");
         return -1;
     }
 
@@ -67,7 +68,7 @@ int main() {
     struct evhttp* pEvhttp = evhttp_new(base);
     if(NULL == pEvhttp)
     {
-        log_error("evhttp init false");
+        log_error("evhttp init failed");
         return -2;
     }
 

@@ -10,6 +10,12 @@ Global::~Global()
 
 }
 
+void Global::Init()
+{
+    m_sptrLog = std::make_shared<MainLog>();
+    m_sptrLog->init();
+}
+
 Global* Global::GetInstance()
 {
     static Global global;
