@@ -11,7 +11,6 @@
 #include "global.h"
 #include "common/utils.h"
 #include "core/threadPool.h"
-#include "mainLog.h"
 #include "itask.h"
 #include "nodeConnect.h"
 #include "httpReq.h"
@@ -35,7 +34,7 @@ int main() {
     signal(SIGPIPE, SIG_IGN);
 
     Global::GetInstance()->Init();
-    
+
     log_info("Server Discovery start");
 
     XThreadPool::GetInstance()->Init(THREADS_COUNT);
